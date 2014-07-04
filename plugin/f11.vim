@@ -41,6 +41,7 @@ function! f11#TogFS()
 		call f11#restoreWindow()
 		let &showtabline=1
 	endif
+	wincmd =
 endfunction
 
 " Mappings {{{1

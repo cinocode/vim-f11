@@ -1,0 +1,15 @@
+*f11.txt* Window position, size utility for gvim fullscreen mode
+
+Author:  Ole Hansen
+License: Same terms as Vim itself (see |license|)
+
+INTRODUCTION                                    *f11*
+
+F11 will remember your window size and position and hide the tabline when in gvim fullscreen mode. This utility plugin depends on the gvimfullscrenn.dll from here (https://github.com/derekmcloughlin/gvimfullscreen_win32/tree/master).
+
+CONFIG                                        *f11-config* *f11-options* *f11-settings*
+
+By default f11 will be toggled by pressing <F11>. You can customize this by putting this line in your .vimrc and changing the "<F11>" to your key of choice.
+
+                                                *fugitive-:Git*
+call f11#togglemap("<F11>")

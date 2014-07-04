@@ -1,0 +1,3 @@
+F11 will remember your window size and position and hide the tabline when in gvim fullscreen mode. This utility plugin depends on the gvimfullscrenn.dll from here (https://github.com/derekmcloughlin/gvimfullscreen_win32/tree/master). To install you need to put the dll into your vim74 folder.
+
+By default f11 will be toggled by pressing <F11>. You can customize this by putting this line in your .vimrc and changing the "<F11>" to your key of choice.

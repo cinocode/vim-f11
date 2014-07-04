@@ -4,6 +4,9 @@
 
 if exists("g:loaded_f11")
 	finish
+elseif has("win32") && has("gui_running")
+else
+	finish
 endif
 let g:loaded_f11 = 1
 

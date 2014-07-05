@@ -5,6 +5,9 @@
 if exists("g:loaded_f11")
 	finish
 elseif has("win32") && has("gui_running")
+elseif has("unix") && has("gui_running")
+	map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+	finish
 else
 	finish
 endif

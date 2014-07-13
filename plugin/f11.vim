@@ -6,8 +6,6 @@ if exists("g:loaded_f11")
 	finish
 elseif has("win32") && has("gui_running")
 elseif has("unix") && has("gui_running")
-	map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
-	finish
 else
 	finish
 endif
@@ -31,21 +29,34 @@ function! f11#restoreWindow()
 endfunction
 
 function! f11#TogFS()
-	if g:f11FullScr == 0
-		let g:f11Lines = &lines
-		let g:f11Columns = &columns
-		call f11#saveWindow()
-		let g:f11FullScr = 1
-		let &showtabline=0
+	if has("unix") && has("gui_running")
+		if g:f11FullScr == 0
+			let g:f11FullScr = 1
+			let &showtabline=0
+		else
+			let g:f11FullScr = 0
+		endif
+		call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")
+		if g:f11FullScr == 0
+			let &showtabline=1
+		endif
 	else
-		let g:f11FullScr = 0
-	endif
-	call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)
-	if g:f11FullScr == 0
-		let &lines = g:f11Lines
-		let &columns = g:f11Columns
-		call f11#restoreWindow()
-		let &showtabline=1
+		if g:f11FullScr == 0
+			let g:f11Lines = &lines
+			let g:f11Columns = &columns
+			call f11#saveWindow()
+			let g:f11FullScr = 1
+			let &showtabline=0
+		else
+			let g:f11FullScr = 0
+		endif
+		call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)
+		if g:f11FullScr == 0
+			let &lines = g:f11Lines
+			let &columns = g:f11Columns
+			call f11#restoreWindow()
+			let &showtabline=1
+		endif
 	endif
 	wincmd =
 endfunction
